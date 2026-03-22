@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="fade-in">
+    <h2 style="margin-bottom: 2rem;">Assessment History</h2>
+    
+    {% if history %}
+        <div style="display: grid; gap: 1rem;">
+            {% for entry in history %}
+            <div class="glass card" style="display: flex; justify-content: space-between; align-items: center; padding: 1.5rem;">
+                <div>
+                    <h4 style="color: var(--primary);">{{ entry.topic }}</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Subject: {{ entry.subject }} | {{ entry.timestamp.strftime('%Y-%m-%d %H:%M') }}</p>
+                </div>
+                <div style="text-align: right;">
+                    <div style="font-size: 1.5rem; font-weight: 700; color: var(--accent);">{{ entry.score }} / {{ entry.total_questions }}</div>
+                    <span style="font-size: 0.8rem; color: var(--text-muted);">Points</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="glass card" style="text-align: center; padding: 4rem;">
+            <p style="color: var(--text-muted);">No assessment history found. Start your first session now!</p>
+            <a href="{{ url_for('index') }}" class="btn btn-primary" style="margin-top: 1.5rem;">Go to Home</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

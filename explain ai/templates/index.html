@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<section class="hero fade-in">
+    <h1>Predict Your Knowledge.</h1>
+    <p>Empowering students to track their progress through AI-driven assessments and web-integrated topic research.</p>
+    {% if current_user.is_authenticated %}
+        <button id="start-assessment-btn" class="btn btn-primary">Start New Assessment</button>
+    {% else %}
+        <a href="{{ url_for('register') }}" class="btn btn-primary">Register Now</a>
+    {% endif %}
+</section>
+
+<div class="modal" id="config-modal">
+    <div class="modal-content glass">
+        <h2 style="margin-bottom: 1.5rem;">Configure Assessment</h2>
+        <form action="{{ url_for('assessment') }}" method="POST">
+            <div class="form-group">
+                <label>Subject</label>
+                <input type="text" name="subject" placeholder="e.g. Science, Tech" required>
+            </div>
+            <div class="form-group">
+                <label>Topic Name</label>
+                <input type="text" name="topic" placeholder="e.g. Quantum Physics, Python" required>
+            </div>
+            <div class="form-group">
+                <label>Number of Questions</label>
+                <input type="number" name="num_questions" min="1" max="20" value="5" required>
+            </div>
+            <div class="form-group">
+                <label>Marks per Question</label>
+                <input type="number" name="marks" min="1" value="1" required>
+            </div>
+            <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                <button type="button" class="btn" id="close-modal" style="background: rgba(255,255,255,0.1);">Cancel</button>
+                <button type="submit" class="btn btn-primary">Begin</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

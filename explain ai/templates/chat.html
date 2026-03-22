@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="glass card chat-container fade-in">
+    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--glass-border); padding-bottom: 1rem; margin-bottom: 1rem;">
+        <div>
+            <h3 id="chat-title">{{ topic }} - Assessment</h3>
+            <span style="color: var(--text-muted); font-size: 0.9rem;">{{ num_questions }} Questions | {{ marks }} Marks each</span>
+        </div>
+    </div>
+    
+    <div class="chat-box" id="chat-box">
+        <!-- Messages will appear here -->
+    </div>
+
+    <div class="chat-input glass">
+        <input type="text" id="chat-input-field" placeholder="Type your answer or use voice..." autocomplete="off">
+        <button id="mic-btn" class="btn" title="Voice Input">🎤</button>
+        <button id="send-btn" class="btn btn-primary">Send</button>
+    </div>
+</div>
+
+<script>
+    window.addEventListener('load', () => {
+        if (window.startAssessmentSession) {
+            window.startAssessmentSession("{{ topic }}", "{{ num_questions }}");
+        }
+    });
+</script>
+{% endblock %}

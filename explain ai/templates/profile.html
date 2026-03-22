@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="glass card fade-in" style="max-width: 600px; margin: 2rem auto;">
+    <h2 style="margin-bottom: 2rem;">User Profile</h2>
+    <form method="POST">
+        <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" name="name" value="{{ user.name }}" required>
+        </div>
+        <div class="form-group">
+            <label>Gmail Address</label>
+            <input type="email" value="{{ user.gmail }}" disabled style="opacity: 0.6;">
+        </div>
+        <div class="form-group">
+            <label>Current Class / Reading</label>
+            <input type="text" name="class" value="{{ user.user_class }}" required>
+        </div>
+        <button type="submit" class="btn btn-primary" style="margin-top: 1rem;">Update Profile</button>
+    </form>
+</div>
+{% endblock %}
